@@ -6,10 +6,10 @@ import csv
 #                           CSV FILE
 
 data = [
-    {"name": "Amias", "date": "2003-09-19", "email": "amiasyaska@gmail.com"},
-    {"name": "Yaska", "date": "2002-09-19", "email": "yasinburhanali@gmail.com"},
-    {"name": "Danny", "date": "2001-05-28", "email": "amias@gmail.com"},
-    {"name": "John", "date": "2000-01-05", "email": "yaska@gmmail.com"},
+    {"name": "Amias", "date": "2003-09-19", "email": "abc@gmail.com"},
+    {"name": "Yaska", "date": "2002-09-19", "email": "dfg@gmail.com"},
+    {"name": "Danny", "date": "2001-05-28", "email": "hjk@gmail.com"},
+    {"name": "John", "date": "2000-01-05", "email": "xyz@gmmail.com"},
 ]
 
 csv_file_name = "data.csv"
@@ -33,8 +33,8 @@ with open(random_letter, "r") as template_file:
 
 current_date = dt.datetime.now().day
 
-my_email = "brunodanny2023@gmail.com"
-my_password = "bojk qfbz udcs xlhf"
+my_email = "pqry@gmail.com"
+my_password = "bojk"
 
 for person in data:
     name = person["name"]
