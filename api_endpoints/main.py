@@ -29,8 +29,6 @@ sunset = int(data["results"]["sunset"].split("T")[1].split(":")[0])
 
 time_now = datetime.now().hour
 
-
-
 if (MY_LAT - 5) <= iss_latitude <= (MY_LAT + 5) and (MY_LONG - 5) < iss_longitude < (MY_LONG + 5):
     if time_now >= sunset or time_now <= sunrise:
         with smtplib.SMTP("gmail.com", 587) as connection:
