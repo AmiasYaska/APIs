@@ -17,7 +17,6 @@ response_stock.raise_for_status()
 stock_data = response_stock.json()["Time Series (Daily)"]
 
 stock_list = [value for (key, value) in stock_data.items()]     # converts dict to list ie list comprehension
-print(stock_list)
 
 yesterday_close = float(stock_list[0]["4. close"])
 
@@ -27,23 +26,23 @@ diff_stock = (abs(today_close - yesterday_close) / yesterday_close) * 100       
 
 print(diff_stock)
 
-if diff_stock > 1:
-    print("Get news")
 
+#                           NEWS
 
-#                NEWS
+news_params = {
+    "q": "Tesla Inc",
+    "from": "2023-09-25",
+    "apiKey": "5bc92d3edf644d36846c615928f45c1b",
+}
 
-#
-# news_params = {
-#     "q": "tesla",
-#     "from": "2023-09-25",
-#     "apiKey": "5bc92d3edf644d36846c615928f45c1b",
-# }
-#
-# response_news = requests.get(news_url, params=news_params)
-# response_news.raise_for_status()
-#
-# news_data = response_news.json()["articles"]
-#
-# top_3_news = news_data[:3]
+response_news = requests.get(news_url, params=news_params)
+response_news.raise_for_status()
+
+news_data = response_news.json()["articles"]
+
+top_3_news = news_data[:3]
 # print(top_3_news)
+
+if diff_stock > 1:
+    print(top_3_news)
+
