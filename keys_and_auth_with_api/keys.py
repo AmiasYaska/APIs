@@ -1,15 +1,15 @@
 import requests
 import os
 from twilio.rest import Client
+# from twilio.http.http_Client import TwilioHttpClient
 
-account_sid = "AC7c78896325d2a1d6881a6f500a278768"
-auth_token = "b70e1fb93d966b30f053cc716ea45aec"
-
+account_sid = "abcd"
+auth_token = os.environ.get("AUTH_TOKEN")               # env variable
 
 parameters = {
     "lat": 0.347596,
     "lon": 32.582520,
-    "appid": "4069afcb8d06a901644c5f8e85209dd3",
+    "appid": "xyz",
 }
 
 response = requests.get("https://api.openweathermap.org/data/2.5/forecast", params=parameters)
@@ -31,9 +31,9 @@ if will_rain:
     client = Client(account_sid, auth_token)
     message = client.messages \
         .create(
-        body="You should carry an umbrella ☂️.",
-        from_="+12053080823",
-        to="+256700765579"
+            body="You should carry an umbrella ☂️.",
+            from_="+120000",
+            to="+0000"
         )
 
     print(message.status)
