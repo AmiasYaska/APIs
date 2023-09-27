@@ -1,14 +1,20 @@
 import requests
-from newsapi import NewsApiClient
-import datetime as dt
+from twilio.rest import Client
+
 
 stock_url = "https://www.alphavantage.co/query"
 news_url = "https://newsapi.org/v2/everything"
 
+twilio_account_sid = 'ABC'
+twilio_auth_token = '[AuthToken]'
+
+stock_apikey = "ABC"
+news_apikey = "123"
+
 parameters_stock = {
     "function": "TIME_SERIES_DAILY",
     "symbol": "TSLA",
-    "apikey": "CH273F3J36IG6BXK"
+    "apikey": stock_apikey
 }
 
 response_stock = requests.get(stock_url, params=parameters_stock)
@@ -29,20 +35,32 @@ print(diff_stock)
 
 #                           NEWS
 
-news_params = {
-    "q": "Tesla Inc",
-    "from": "2023-09-25",
-    "apiKey": "5bc92d3edf644d36846c615928f45c1b",
-}
-
-response_news = requests.get(news_url, params=news_params)
-response_news.raise_for_status()
-
-news_data = response_news.json()["articles"]
-
-top_3_news = news_data[:3]
-# print(top_3_news)
-
 if diff_stock > 1:
-    print(top_3_news)
+    news_params = {
+        "q": "Tesla Inc",
+        "from": "2023-09-25",
+        "apiKey": news_apikey
+    }
 
+    response_news = requests.get(news_url, params=news_params)
+    response_news.raise_for_status()
+
+    news_data = response_news.json()["articles"]
+
+    top_3_news = news_data[:3]
+
+    formatted_articles = [f"{article['title']}.\n{article['description']}" for article in top_3_news]
+
+    print(formatted_articles)
+
+#                       TWILIO SMS
+
+    client = Client(twilio_account_sid, twilio_auth_token)
+
+    for article in formatted_articles:
+        message = client.messages.create(
+            body=article,
+            from_="123",
+            to='567'
+
+        )
