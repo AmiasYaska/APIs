@@ -1,14 +1,14 @@
 import requests
 from datetime import datetime
 
-#                           NUTRIONIST
+#                           NUTRITIONIST
 
 main_endpoint = "https://trackapi.nutritionix.com/v2"
 
 nutrients_url = f"{main_endpoint}/natural/nutrients"
 
-NUTR_APIKEY = "111eb5793b5a11f73193522e19eef222"
-NUTR_ID = "7d43be49"
+NUTR_APIKEY = "123"
+NUTR_ID = "7d"
 
 # user_data = input("What have you eaten today? ")
 
